@@ -1,30 +1,78 @@
-# React + TypeScript + Vite
+# Charts Playground — MUI X Charts POC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dashboard interativo construído com React + Vite + TypeScript + Material UI + MUI X Charts, criado para o time de design avaliar a flexibilidade visual da biblioteca.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Tecnologia | Versão |
+|---|---|
+| React | 19 |
+| Vite | 6 |
+| TypeScript | 5 |
+| Material UI | 9 |
+| MUI X Charts | 9 |
 
-## Expanding the ESLint configuration
+## Como executar
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+# Instalar dependências
+npm install
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
+# Iniciar servidor de desenvolvimento
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Acesse `http://localhost:5173`
+
+## Como buildar
+
+```bash
+npm run build
+npm run preview
+```
+
+## Estrutura do projeto
+
+```
+src/
+  components/
+    cards/          # MetricCard (3 variantes: elevado, borda, preenchido)
+    charts/         # LineChartWidget, BarChartWidget, AreaChartWidget, PieChartWidget
+    controls/       # ControlsPanel — painel de personalização
+    layout/         # AppHeader
+  data/             # Dados mockados (metrics, chartData)
+  hooks/            # useThemeToggle, useChartConfig
+  pages/            # Dashboard
+  theme/            # createAppTheme, paletas de cores
+  types/            # Tipos TypeScript compartilhados
+```
+
+## Controles interativos
+
+Clique no botão flutuante (canto inferior direito) ou no ícone de ajuste no header para abrir o painel de personalização.
+
+### Tema
+- Alternar entre modo **claro** e **escuro**
+- 8 opções de **cor primária**
+
+### Layout
+- **Border radius** — slider de 0 a 24px
+- **Espaçamento** — slider de 4 a 16px
+- **Densidade** — compacto / normal / confortável
+- **Estilo do card** — elevado / borda / preenchido
+
+### Gráficos
+- 5 **paletas de cores** — default, vibrant, pastel, monochrome, warm
+- **Tipo de curva** para LineChart e AreaChart — linear, natural, monotone, step
+- **Layout do BarChart** — vertical / horizontal
+- Toggle **grid** e **legenda**
+- **Inner radius** do PieChart — converte pizza em donut
+
+## Gráficos incluídos
+
+| Componente | Tipo | Dados |
+|---|---|---|
+| `LineChartWidget` | Linha | Receita vs Despesas (mensal) |
+| `BarChartWidget` | Barras | Vendas por trimestre (2024 vs 2025) |
+| `AreaChartWidget` | Área | Visitantes e cadastros (mensal) |
+| `PieChartWidget` | Pizza/Donut | Fontes de tráfego |
